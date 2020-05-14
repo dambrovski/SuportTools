@@ -1,6 +1,7 @@
 
 
-axios.get('http://localhost:3000/modulo_acesso/listAll')
+axios.get('http://suportetools-com-br.umbler.net/modulo_acesso/listAll')
+
 .then(response => criaListaDinamica(response.data))
 .catch(error => console.log(error))
 const criaListaDinamica = ( modulo ) => {

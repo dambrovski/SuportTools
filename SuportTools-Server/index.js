@@ -4,7 +4,7 @@ const cors = require('cors')
 
 
 const bodyParser = require('body-parser');
-const port = 3000; //porta padrão
+const port = 41890; //porta padrão
 const mysql = require('mysql');
 
 //configurando o body parser para pegar POSTS mais tarde
@@ -26,13 +26,15 @@ app.listen(port);
 
 router.use(cors())
 console.log('API funcionando!');
+teste = execSQLQuery('SELECT * FROM modulo');
+console.log(teste);
 
 function execSQLQuery(sqlQry, res){
     const connection = mysql.createConnection({
-      host     : 'localhost',
-      port     : 3306,
-      user     : 'root',
-      password : 'root',
+      host     : 'mysql669.umbler.com',
+      port     : 41890,
+      user     : 'admin_suporte',
+      password : '1q2w3e4r',
       database : 'ws_niveis_fkn'
     });
   
