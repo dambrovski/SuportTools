@@ -1,0 +1,23 @@
+{
+  "name": "SuportTools-Client",
+  "version": "1.0.0",
+  "description": "Projeto de SuportTools em Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "author": "dambrovski",
+  "license": "ISC",
+  "build": {
+    "asar": "true",
+    "productName": "SuportTools"
+  },
+  "devDependencies": {
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}

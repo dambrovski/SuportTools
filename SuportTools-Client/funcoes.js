@@ -1,6 +1,8 @@
 
 
-axios.get('http://suportetools-com-br.umbler.net/modulo_acesso/listAll')
+function listAllniveis() {
+  
+  axios.get('http://suportetools-com-br.umbler.net/modulo_acesso/listAll')
 
 .then(response => criaListaDinamica(response.data))
 .catch(error => console.log(error))
@@ -38,4 +40,9 @@ modulo.map(modulo => {
   divModulos_Acessos.appendChild(listModulo_Acesso)  
 })
 }
+}
 
+function buscarRejeicao() {
+  console.log("cheguei")
+  
+}

@@ -1,0 +1,288 @@
+<html>
+    <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″>
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    .buttonFileStatus{
+        width:160;
+        height:50;
+        font-size: 20;
+        margin: 2;
+        background: #478eb1;
+        border: none;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .buttonNiveisdeAcesso{
+        width:160;
+        height:50;
+        font-size: 20;
+        margin: 2;
+        background: #c59835;
+        border: none;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .buttonRejeicoes{
+        width:160;
+        height:50;
+        font-size: 20;
+        margin: 2;
+        background: #308b44;
+        border: none;
+        border-radius: 10px;
+        color: white;
+    }
+    .buttonCFOP{
+        width:160;
+        height:50;
+        font-size: 20;
+        margin: 2;
+        background: #bd2c2c;
+        border: none;
+        border-radius: 10px;
+        color: white;
+    }
+
+
+
+    .textviewVersao{
+        width: 400;
+        margin: 5;
+        font-size: 25;
+        padding: 5;
+        border: none;
+        background: rgb(230, 213, 213);
+        font-family: 'Times New Roman', Times, serif;
+        color: #607d8b;
+        
+    }
+
+
+    .textview{
+        width: 540;
+        margin: 5;
+        font-size: 25;
+        font-family: 'Times New Roman', Times, serif;
+        padding: 5;
+        border: none;
+        background: rgb(230, 213, 213);
+        color: #607d8b;
+    }
+
+    .main{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%)translateY(-50%);
+    }
+    .bg{
+        background: linear-gradient(to left,  #305c36, #d5d9e0);
+        height: 100%;
+    }
+    .msgDiv{
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-size: 35;
+        padding-bottom: 50px;
+        color: #191b1b;
+    
+        
+    }
+input{
+    width:249;
+    height:50;
+    border-radius: 10px;
+    
+}
+
+</style>
+    </head>
+
+<body>
+    <div class="bg">
+        <div class="main">
+            <div id="msgDiv" class="msgDiv">
+                <td>
+                    <label for="msg">SuportTools FKN</label>
+                </td>
+   
+            </div>
+            
+            
+        <table class="table">
+            <tr>    
+                <td><button type="button" class="buttonFileStatus" data-toggle="modal" data-target="#modalFile">FILE-STATUS</button></td>
+                <td><button type="button" class="buttonNiveisdeAcesso" data-toggle="modal" data-target="#modalNiveis">NIVEIS</button></td>
+                <td><button type="button" class="buttonRejeicoes" data-toggle="modal" data-target="#modalRejeicoes">REJEICOES</button></td>
+                <td><button type="button" class="buttonCFOP" data-toggle="modal" data-target="#modalCFOPS">CFOPS</button></td>
+            </tr>
+        </table>
+        <div id="msgFooter" class="msgDiv">
+            <td>
+                <label for="msg"></label>
+            </td>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalRejeicoes" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRejeicoes">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabelRejeicoes">Digite o código da Rejeição:</h4>
+        </div>
+        <div class="modal-body">
+          <input style="width: 70px; font-size: 24px" maxlength="3" type="text" id="idRejeicao" required="required" pattern="[0-9]+$">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="window.location.href = 'index.html'">Listar Todas Rejeições</button>
+          <button type="button" class="btn btn-success" onclick="buscarRejeicao()">Buscar</button>
+        </div>
+        
+      </div>
+      <input id="ResultadoRejeicao" readonly=“true” style="display: none; width: 600px;">
+      <input type="button" id="linkAuxiliar" onclick="novaJanela()" value="Informações" style="display: none; width: 200px;">
+
+    </div>
+  </div>
+
+
+
+<div class="modal fade" id="modalCFOPS" tabindex="-1" role="dialog" aria-labelledby="myModalLabelCFOPS">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabelCFOPS">Digite o Código da CFOP:</h4>
+        </div>
+        <div class="modal-body">
+          <input style="width: 70px; font-size: 24px" maxlength="4" type="text" id="idCFOP" required="required" pattern="[0-9]+$">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="window.location.href = 'index.html'">Listar todas CFOPS</button>
+          <button type="button" class="btn btn-success" onclick="buscarCFOP()">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="modal fade" id="modalNiveis" tabindex="-1" role="dialog" aria-labelledby="myModalLabelNiveis">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabelNiveis">Digite o Nivel de Acesso:</h4>
+        </div>
+        <div class="modal-body">
+          <input type="input">
+        </div>
+        <div class="modal-footer">
+          <button type="button" style="border: none; margin: none;" class="btn btn-primary" onclick="window.location.href = 'index.html'">Listar todos Niveis de Acesso</button>
+          <button type="button" class="btn btn-success">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+  <div class="modal fade" id="modalFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabelFile">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabelFile">Informe o FILE-STATUS:</h4>
+        </div>
+        <div class="modal-body">
+          <input type="input">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="window.location.href = 'index.html'">Listar todos File Status</button>
+          <button type="button" class="btn btn-success">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+
+<div id='modulos_div'></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+<script src="axios.js"></script>
+
+
+<script type="text/javascript">
+link = ""
+
+function buscarRejeicao() {
+  var idRejeicao = "";
+  idRejeicao = document.getElementById('idRejeicao').value
+  console.log(idRejeicao);
+  axios.get('http://suportetools-com-br.umbler.net/rejeicoes/'+idRejeicao) 
+  .then(response => criaListaDinamica(response.data))
+  .catch(error => console.log(error))
+  const criaListaDinamica = ( modulo ) => {
+
+
+  modulo.map(rejeicoes_nfe => {
+
+  const rejeicaoObjeto = document.createElement('tr')
+
+  
+  rejeicaoObjeto.id = rejeicoes_nfe.codigoRejeicao
+  rejeicaoObjeto.descricao = rejeicoes_nfe.descricao
+  rejeicaoObjeto.link = rejeicoes_nfe.linkAuxiliar
+  link = rejeicoes_nfe.linkAuxiliar
+
+  if(rejeicoes_nfe.linkAuxiliar!=null){
+    
+    document.getElementById('ResultadoRejeicao').style.display = 'inline';
+    document.getElementById('ResultadoRejeicao').value = rejeicaoObjeto.descricao;
+  
+  
+    if(rejeicoes_nfe.linkAuxiliar!=null){
+      document.getElementById('linkAuxiliar').style.display = 'inline';
+      document.getElementById('linkAuxiliar').value = "Clique para mais informações!";
+      }
+    else{
+        document.getElementById('linkAuxiliar').style.display = 'none';
+      }
+    }
+    else{
+      document.getElementById('ResultadoRejeicao').value = "Nenhuma Rejeição Encontrada!";
+      document.getElementById('linkAuxiliar').style.display = 'inline';
+    }
+
+  })
+}
+  
+
+}
+
+function novaJanela() {
+  URL = link
+  window.open(URL, "minhaJanela", "height=800,width=600");
+  
+}
+</script>
+
+</html>

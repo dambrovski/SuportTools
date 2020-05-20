@@ -86,4 +86,17 @@ router.get('/modulo_acesso/:idModuloAcesso?', (req, res) =>{
   execSQLQuery('SELECT * FROM modulo_acesso' + filter, res);
 })
 
+router.get('/rejeicoes', (req, res) =>{
+  let filter = '';
+  execSQLQuery('SELECT * FROM rejeicoes_nfe' + filter, res);
+
+})
+
+router.get('/rejeicoes/:codigoRejeicao?', (req, res) =>{
+  let filter = '';
+  if(req.params.codigoRejeicao) filter = ' WHERE codigoRejeicao=' + parseInt(req.params.codigoRejeicao);
+  execSQLQuery('SELECT * FROM rejeicoes_nfe' + filter, res);
+})
+
+
 
